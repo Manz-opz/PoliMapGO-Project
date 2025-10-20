@@ -4,7 +4,7 @@ const SPLASH_DURATION = 2200;
 function hideSplashAndNavigate() {
     const splash = document.getElementById('splash');
     if (!splash) {
-        window.location.href = 'login.html';
+        window.location.href = '../html/login.html';
         return;
     }
 
