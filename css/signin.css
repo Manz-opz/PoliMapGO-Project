@@ -1,0 +1,45 @@
+:root{
+    --accent: #1e1d6d;
+    --muted: #6c6c7a;
+}
+
+*{box-sizing:border-box}
+body{
+    margin:0;
+    min-height:100vh;
+    display:grid;
+    place-items:center;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(180deg,#f7fbff 0%, #eef4ff 100%);
+    padding:24px;
+}
+
+.signin-card{
+    width:100%;max-width:520px;background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,255,0.85));
+    border-radius:14px;padding:22px;box-shadow:0 12px 34px rgba(30,29,109,0.08);
+    border:1px solid rgba(30,29,109,0.04);backdrop-filter:blur(6px);
+}
+
+.header{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.header .back .bi{font-size:22px;cursor:pointer;color:var(--accent);display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;transition:transform .18s ease, background-color .18s ease, color .18s ease}
+.header .back .bi:hover{transform:scale(1.06);background-color:rgba(30,29,109,0.06)}
+.header .back .bi:active{transform:scale(0.98);background-color:rgba(30,29,109,0.10)}
+.header h2{margin:0;color:var(--accent)}
+
+.form-container{padding:6px 0}
+.form-row{display:grid;grid-template-columns:1fr;gap:12px}
+.form-container-a{display:flex;flex-direction:column}
+.form-container-a p{margin:0;font-weight:700;color:var(--muted);font-size:12px}
+.form-container-a input{padding:12px;border-radius:10px;border:1px solid rgba(30,29,109,0.08);background:#fff;transition:box-shadow .16s ease,transform .12s ease}
+.form-container-a input:focus{box-shadow:0 10px 24px rgba(30,29,109,0.06);transform:translateY(-1px);outline:none;border-color:var(--accent)}
+
+.button1{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;border:0;margin-top:6px;cursor:pointer;font-weight:700}
+
+@media (max-width:480px){
+    .signin-card{padding:16px;border-radius:12px}
+}
+
+/* preserve some legacy classes to avoid breaking scripts */
+.form-control{width:100%}
+.back{margin-right:8px}
+.font{display:flex;align-items:center}

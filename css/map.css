@@ -1,0 +1,739 @@
+body {
+  background-color: white;
+  overflow: hidden;
+}
+
+ul {
+  list-style-type: none;
+}
+/*icon bootstrap*/
+.bi {
+  font-size: 28px;
+  cursor: pointer;
+  margin: 12px;
+}
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  z-index: 10;
+}
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  right: -250px;
+  color: white;
+  background-color: #1e1d6d;
+  position: fixed;
+  top: 0;
+  transition: 0.3s;
+  padding: 20px;
+  z-index: 5;
+}
+.sidebar a:hover {
+  color: red;
+}
+.bi-list:hover {
+  color: red;
+}
+.bi-arrow-left:hover {
+  color: red;
+}
+/* 📱 Mobile screen (max 768px) */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 50%;
+    right: -50%;
+  }
+}
+/* 📱 Phone kecil (max 480px) */
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    right: -100%;
+  }
+}
+.sidebar.active {
+  right: 0;
+}
+.sidebar .icon {
+  background-color: #1e1d6d;
+}
+.sidebar ul li {
+  margin: 20px 0;
+}
+
+.close-btn {
+  position: absolute;
+  background: transparent;
+  top: 10px;
+  right: 15px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 28px;
+}
+.close-btn:hover {
+  color: red;
+}
+.leaflet-routing-container {
+  max-height: 30vh;
+  overflow-y: auto;
+  font-size: 0.95rem;
+  right: 0px !important;
+  top: 0px !important;
+}
+
+/* Enhanced Logout Alert Styles */
+.custom-alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 16px;
+  padding: 0;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  max-width: 400px;
+  width: 90%;
+  animation: alertSlideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+}
+
+.custom-alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+.custom-alert-header {
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: center;
+}
+
+.custom-alert-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.custom-alert-icon.warning {
+  color: #ff9500;
+}
+
+.custom-alert-icon.danger {
+  color: #ff3b30;
+}
+
+.custom-alert-icon.success {
+  color: #34c759;
+}
+
+.custom-alert-icon.info {
+  color: #007aff;
+}
+
+.custom-alert-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: #1d1d1f;
+}
+
+.custom-alert-message {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.custom-alert-body {
+  padding: 20px 24px;
+  text-align: center;
+}
+
+.custom-alert-message-content {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.custom-alert-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.custom-alert-btn {
+  padding: 12px 24px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 100px;
+}
+
+.custom-alert-btn-primary {
+  background: #007aff;
+  color: white;
+}
+
+.custom-alert-btn-primary:hover {
+  background: #0056cc;
+  transform: translateY(-1px);
+}
+
+.custom-alert-btn-secondary {
+  background: #f2f2f7;
+  color: #666;
+}
+
+.custom-alert-btn-secondary:hover {
+  background: #e5e5ea;
+  transform: translateY(-1px);
+}
+
+.custom-alert-btn-danger {
+  background: #ff3b30;
+  color: white;
+}
+
+.custom-alert-btn-danger:hover {
+  background: #d70015;
+  transform: translateY(-1px);
+}
+
+@keyframes alertSlideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Toast notifications */
+.custom-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  z-index: 10001;
+  animation: toastSlideIn 0.3s ease;
+  max-width: 300px;
+  border-left: 4px solid #007aff;
+}
+
+.custom-toast-success {
+  border-left-color: #34c759;
+}
+.custom-toast-warning {
+  border-left-color: #ff9500;
+}
+.custom-toast-danger {
+  border-left-color: #ff3b30;
+}
+.custom-toast-info {
+  border-left-color: #007aff;
+}
+
+.custom-toast-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.custom-toast-content i {
+  font-size: 1.2rem;
+}
+
+@keyframes toastSlideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toastSlideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Dark Mode Support for Alerts */
+.dark-mode .custom-alert {
+  background: #2d2d2d;
+  border: 1px solid #444;
+}
+
+.dark-mode .custom-alert-header {
+  border-bottom: 1px solid #444;
+}
+
+.dark-mode .custom-alert-title {
+  color: #ffffff;
+}
+
+.dark-mode .custom-alert-message,
+.dark-mode .custom-alert-message-content {
+  color: #cccccc;
+}
+
+.dark-mode .custom-alert-btn-secondary {
+  background: #3a3a3c;
+  color: #cccccc;
+}
+
+.dark-mode .custom-alert-btn-secondary:hover {
+  background: #48484a;
+}
+
+.dark-mode .custom-toast {
+  background: #2d2d2d;
+  color: white;
+}
+
+/* Responsive alerts */
+@media (max-width: 480px) {
+  .custom-alert {
+    max-width: 320px;
+  }
+
+  .custom-alert-actions {
+    flex-direction: column;
+  }
+
+  .custom-alert-btn {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .custom-toast {
+    max-width: 280px;
+    right: 10px;
+    left: 10px;
+  }
+}
+
+/* Conservative image sizing */
+.building-image-container {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.building-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.building-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  background: #f8f9fa;
+  width: 100%;
+}
+
+.building-popup-card {
+  max-width: 240px;
+  width: 100%;
+}
+
+/* ===== LEGEND STYLES ===== */
+
+/* Default legend styles */
+.map-legend {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 4;
+  max-width: 250px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+.map-legend.dark-mode {
+  background: #2d3748;
+  color: white;
+  border: 1px solid #4a5568;
+}
+
+.map-legend {
+  background: white;
+  color: black;
+  border: 1px solid #4a5568;
+}
+
+/* Legend Header dengan Close Button */
+.legend-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.legend-title {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  flex: 1;
+}
+
+.map-legend.dark-mode .legend-title {
+  color: white;
+}
+
+.legend-close-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #666;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.legend-close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.map-legend.dark-mode .legend-close-btn {
+  color: #a0aec0;
+}
+
+.map-legend.dark-mode .legend-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* Legend Content */
+.legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.legend-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.map-legend.dark-mode .legend-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  flex-shrink: 0;
+}
+
+.legend-label {
+  font-size: 12px;
+  flex: 1;
+}
+
+.legend-checkbox {
+  margin: 0;
+  cursor: pointer;
+}
+
+.legend-item.disabled {
+  opacity: 0.4;
+}
+
+.legend-item.disabled .legend-color {
+  opacity: 0.5;
+}
+
+.legend-item.disabled .legend-label {
+  color: #999;
+  text-decoration: line-through;
+}
+
+.map-legend.dark-mode .legend-item.disabled .legend-label {
+  color: #a0aec0;
+}
+
+/* Legend Actions */
+.legend-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.map-legend.dark-mode .legend-actions {
+  border-top: 1px solid #4a5568;
+}
+
+.legend-btn {
+  flex: 1;
+  padding: 4px 8px;
+  font-size: 11px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #f8f9fa;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.legend-btn:hover {
+  background: #e9ecef;
+}
+
+.map-legend.dark-mode .legend-btn {
+  background: #4a5568;
+  color: white;
+}
+
+.map-legend.dark-mode .legend-btn:hover {
+  background: #2d3748;
+}
+
+/* Legend Collapsed State */
+.map-legend.collapsed {
+  max-width: 40px;
+  max-height: 40px;
+  overflow: hidden;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.map-legend.collapsed .legend-content {
+  display: none;
+}
+
+.map-legend.collapsed .legend-header {
+  margin-bottom: 0;
+}
+
+.map-legend.collapsed .legend-title {
+  display: none;
+}
+
+.map-legend.collapsed .legend-close-btn {
+  margin: 0 auto;
+  transform: scale(1.2);
+}
+
+/* Highlight effect ketika hover collapsed legend */
+.map-legend.collapsed:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: #1e1d6d;
+}
+
+.map-legend.dark-mode.collapsed:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Legend Icon Styles */
+.legend-icon {
+    font-size: 14px;
+    width: 16px;
+    text-align: center;
+    color: #666;
+    flex-shrink: 0;
+}
+
+.map-legend.dark-mode .legend-icon {
+    color: #a0aec0;
+}
+
+.legend-item.disabled .legend-icon {
+    opacity: 0.4;
+}
+
+/* Adjust legend item spacing untuk accommodate icon */
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 6px 8px; /* Slightly increased padding */
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+/* Mobile adjustments untuk icons */
+@media (max-width: 480px) {
+    .legend-icon {
+        font-size: 12px;
+        width: 14px;
+    }
+    
+    .legend-item {
+        gap: 6px;
+        padding: 4px 6px;
+    }
+}
+
+/* ===== RESPONSIVE LEGEND ===== */
+
+/* Tablet screens (768px and below) */
+@media (max-width: 768px) {
+  .map-legend {
+    max-width: 220px;
+    padding: 12px;
+    bottom: 15px;
+    left: 15px;
+  }
+
+  .legend-title {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .legend-label {
+    font-size: 11px;
+  }
+
+  .legend-color {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Mobile screens (480px and below) */
+@media (max-width: 480px) {
+  .map-legend {
+    max-width: 180px;
+    padding: 10px;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .legend-title {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .legend-label {
+    font-size: 10px;
+  }
+
+  .legend-color {
+    width: 16px;
+    height: 16px;
+  }
+
+  .legend-checkbox {
+    transform: scale(0.9);
+  }
+
+  .legend-items {
+    gap: 6px;
+  }
+
+  .legend-item {
+    padding: 3px 6px;
+    min-height: 44px;
+  }
+
+  .legend-close-btn {
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+  }
+
+  .map-legend.collapsed {
+    max-width: 35px;
+    max-height: 35px;
+    padding: 6px;
+  }
+
+  .map-legend.collapsed .legend-close-btn {
+    transform: scale(1.1);
+  }
+}
+
+/* Very small screens (360px and below) */
+@media (max-width: 360px) {
+  .map-legend {
+    max-width: 160px;
+    padding: 8px;
+    bottom: 8px;
+    left: 8px;
+  }
+
+  .legend-title {
+    font-size: 11px;
+  }
+
+  .legend-label {
+    font-size: 9px;
+  }
+
+  .legend-color {
+    width: 14px;
+    height: 14px;
+  }
+}
