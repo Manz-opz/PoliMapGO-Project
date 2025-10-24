@@ -72,6 +72,7 @@ window.map = L.map("map", {
   zoom: 17,
   layers: [darkmodeEnable ? darkLayer : lightLayer],
   zoomControl: false,
+  rotate:true,
   minZoom: 5,
 });
 
@@ -406,3 +407,4 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 window.showUsername = showUsername;
+
