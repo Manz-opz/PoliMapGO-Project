@@ -148,7 +148,7 @@ async function logout() {
         
         // Redirect to login page after a brief delay
         setTimeout(() => {
-          window.location.href = "/PoliMapGO-Project/index.html";
+          window.location.href = "../index.html";
         }, 1000);
         
       }, 500);
@@ -177,3 +177,4 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('Dark mode initialized:', localStorage.getItem('darkMode') === 'true');
 
 });
+
