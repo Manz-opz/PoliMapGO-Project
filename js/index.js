@@ -18,7 +18,7 @@ function hideSplashAndNavigate() {
     setTimeout(() => {
         // remove splash from DOM after fade
         if (splash.parentNode) splash.parentNode.removeChild(splash);
-        window.location.href = 'login.html';
+        window.location.href = 'html/login.html';
     }, 450);
 }
 
@@ -29,3 +29,4 @@ if (document.readyState === 'loading') {
     setTimeout(hideSplashAndNavigate, SPLASH_DURATION);
 
 }
+
