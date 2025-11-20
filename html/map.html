@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/map.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css"
+    />
+    <link rel="stylesheet" href="../css/darkmode.css" />
+    <!-- JavaScript -->
+    <script src="../js/map.js"></script>
+    <script src="../js/search.js" defer></script>
+    <script type="module" src="../js/admin-check.js"></script>
+    <title>Home Page – PUO Map App</title>
+    <style>
+      #map {
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        z-index: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div
+        class="d-flex justify-content-start align-items-center"
+        style="z-index: 5"
+      >
+        <!--icon-->
+        <i
+          class="bi bi-arrow-left image"
+          onclick="goBack()"
+          role="button"
+          aria-label="Back"
+        ></i>
+        <div class="input-group flex-nowrap position-relative">
+          <input
+            id="searchBar"
+            type="search"
+            class="form-control"
+            placeholder="Search buildings, rooms, or staff"
+            autocomplete="off"
+          />
+          <!-- Dropdown results -->
+          <ul
+            id="searchResults"
+            class="list-group position-absolute w-100"
+            style="
+              top: 100%; /* push below input */
+              left: 0;
+              z-index: 1000;
+              max-height: 250px;
+              overflow-y: auto;
+              display: none;
+            "
+          ></ul>
+        </div>
+        <i
+          class="bi bi-list"
+          onclick="SidebarBtn()"
+          role="button"
+          aria-label="Menu"
+        ></i>
+      </div>
+    </header>
+    <!--Sidebar-->
+    <div class="sidebar" id="sidebarId">
+      <div>
+        <div>
+          <button class="close-btn" onclick="closebtn()" aria-label="Close">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <div>
+          <h2>PoliMap GO!</h2>
+        </div>
+      </div>
+      <ul>
+        <li>
+          <p id="user"></p>
+        </li>
+        <li>
+          <a href="inbox.html">
+            <i class="bi bi-inbox"></i>
+            INBOX</a
+          >
+        </li>
+        <li>
+          <a href="setting.html">
+            <i class="bi bi-gear"></i>
+            SETTING</a
+          >
+        </li>
+        <li>
+          <a href="mapDownload.html">
+            <i class="bi bi-cloud-arrow-down"></i>
+            MAP DOWNLOAD</a
+          >
+        </li>
+        <li>
+          <a href="about.html">
+            <i class="bi bi-info-circle"></i>
+            ABOUT POLIMAP</a
+          >
+        </li>
+        <li class="admin-only" style="display: none">
+          <a href="admin.html">
+            <i class="bi bi-shield-lock"></i>
+            ADMIN PAGE
+          </a>
+        </li>
+        <!-- Add Logout Option -->
+        <li id="logoutItem" style="display: none">
+          <a href="#" onclick="logout()" class="text-danger">
+            <i class="bi bi-box-arrow-right"></i>
+            LOGOUT
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div style="z-index: 0">
+      <div id="map"></div>
+      <!-- Legend Container -->
+      <!-- Legend Container -->
+      <div id="mapLegend" class="map-legend" title="Click to expand legend">
+        <div class="legend-header">
+          <div class="legend-title">Building Categories</div>
+          <button
+            class="legend-close-btn"
+            onclick="toggleLegend()"
+            aria-label="Close legend"
+            title="Toggle legend"
+          >
+            <i class="bi bi-x"></i>
+          </button>
+        </div>
+        <div class="legend-content">
+          <div id="legendItems" class="legend-items">
+            <!-- Legend items will be generated dynamically -->
+          </div>
+          <div class="legend-actions">
+            <button class="legend-btn" onclick="toggleAllBuildings(true)">
+              Show All
+            </button>
+            <button class="legend-btn" onclick="toggleAllBuildings(false)">
+              Hide All
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+      <script type="module" src="../js/map-db.js"></script>
+      <script src="../js/darkmode.js"></script>
+
+      <script>
+        // Function that handles what happens when a polygon is clicked
+        function onBuildingClick(building, polygon) {
+          const center = polygon.getBounds().getCenter();
+
+          // Check if building has an image
+          const hasImage =
+            building.image_url && building.image_url.trim() !== "";
+
+          // Image or placeholder with better styling
+          const imageContent = hasImage
+            ? `<div class="building-image-container">
+                <img src="${building.image_url}" alt="${building.name}" 
+                      class="building-image" 
+                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="building-placeholder" style="display: none;">
+                  <i class="bi bi-building display-4 text-muted"></i>
+                  <p class="small text-muted mt-1 mb-0">Image failed to load</p>
+                </div>
+              </div>`
+            : `<div class="building-placeholder text-center py-4 bg-light rounded">
+                <i class="bi bi-building display-4 text-muted"></i>
+                <p class="small text-muted mt-1 mb-0">No image available</p>
+              </div>`;
+
+          // Bootstrap card popup with image
+          const popupContent = `
+          <div class="building-popup-card card shadow-sm border-0">
+            ${imageContent}
+            <div class="card-body text-center p-3">
+              <h4 class="card-title mb-2 fw-bold text-truncate building-name">
+                ${building.name}
+              </h4>
+              <p class="card-text text-muted mb-3 building-info" style="font-size: 0.9rem; line-height: 1.4;">
+                ${building.info || "No description available"}
+              </p>
+              <button class="btn btn-primary w-100 building-directions-btn" 
+                onclick="goToDirections(${center.lat}, ${center.lng})">
+                <i class="bi bi-signpost-split me-2"></i>Get Directions
+              </button>
+            </div>
+          </div>
+        `;
+
+          polygon.bindPopup(popupContent).openPopup();
+        }
+        // Helper for redirect
+        function goToDirections(lat, lng) {
+          window.location.href = `directions.html?lat=${lat}&lng=${lng}`;
+        }
+
+        // ADD THIS LINE to make it globally available
+        window.goToDirections = goToDirections;
+      </script>
+    </div>
+  </body>
+</html>

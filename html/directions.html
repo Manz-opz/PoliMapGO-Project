@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Directions – PUO Map App</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/map.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="../css/darkmode.css" />
+    <link rel="stylesheet" href="../css/direction.css"/>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="d-flex justify-content-between align-items-center w-100" style="z-index: 5">
+        <!-- Back button -->
+        <i class="bi bi-arrow-left image" onclick="goBack()" role="button" aria-label="Back"></i>
+        
+        <h5 class="ms-2 mb-0">Directions</h5>
+
+        <!-- Menu button -->
+        <i class="bi bi-list ms-auto" onclick="SidebarBtn()" role="button" aria-label="Menu"></i>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebarId">
+      <div>
+        <div>
+          <button class="close-btn" onclick="closebtn()" aria-label="Close">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <div>
+          <h2>PoliMap GO!</h2>
+        </div>
+      </div>
+      <ul>
+        <li>
+          <p id="user"></p>
+        </li>
+        <li>
+          <a href="inbox.html">
+            <i class="bi bi-inbox"></i>
+            INBOX</a
+          >
+        </li>
+        <li>
+          <a href="setting.html">
+            <i class="bi bi-gear"></i>
+            SETTING</a
+          >
+        </li>
+        <li>
+          <a href="map.html">
+            <i class="bi bi-map"></i>
+            MAP</a
+          >
+        </li>
+        <li>
+          <a href="mapDownload.html">
+            <i class="bi bi-cloud-arrow-down"></i>
+            MAP DOWNLOAD</a
+          >
+        </li>
+        <li>
+          <a href="about.html">
+            <i class="bi bi-info-circle"></i>
+            ABOUT POLIMAP</a
+          >
+        </li>
+        <li class="admin-only" style="display: none;">
+          <a href="admin.html">
+            <i class="bi bi-shield-lock"></i>
+            ADMIN PAGE
+          </a>
+        </li>
+         <!-- Add Logout Option -->
+        <li id="logoutItem" style="display: none;">
+          <a href="#" onclick="logout()" class="text-danger">
+            <i class="bi bi-box-arrow-right"></i>
+            LOGOUT
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Map -->
+    <div style="z-index: 0">
+      <div id="map"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script src="../js/darkmode.js"></script>
+    <script src="../js/directions.js"></script>
+    <script type="module" src="../js/admin-check.js"></script>
+  </body>
+</html>
