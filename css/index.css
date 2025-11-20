@@ -1,0 +1,76 @@
+body {
+    background-color: #1e1d6d;
+    overflow: hidden; /* prevent scrolling while splash is visible */
+}
+h2 {
+    color: white;
+    font-size: 2rem;
+}
+.font{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Splash screen styles */
+.splash{
+    position:fixed;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(180deg, #1e1d6d 0%, #27308a 100%);
+    z-index:9999;
+}
+.splash-inner{
+    text-align:center;
+    color:#fff;
+}
+.splash-logo{
+    width:460px;
+    height:auto;
+    display:block;
+    margin:0 auto 12px auto;
+    /* polished entrance */
+    transform: scale(0.88);
+    opacity: 0;
+    animation: splash-pop 700ms cubic-bezier(.2,.9,.2,1) forwards 250ms;
+}
+.splash-title{
+    margin:0;
+    font-size:1.15rem;
+    letter-spacing:0.4px;
+    color: #ffffffdd;
+    transition: opacity 300ms ease, transform 300ms ease;
+}
+
+/* When splash is hidden we remove overflow lock */
+body.splash-hidden{
+    overflow:auto;
+}
+
+/* Entrance animation for logo */
+@keyframes splash-pop{
+    0%{ transform: scale(0.88); opacity:0; filter: blur(6px); }
+    60%{ transform: scale(1.06); opacity:1; filter: blur(0px); }
+    100%{ transform: scale(1); opacity:1; filter: blur(0px); }
+}
+
+/* Fade out helper when the splash container is faded via inline style */
+.splash[style*="opacity: 0"] .splash-logo{
+    transition: opacity 300ms ease, transform 300ms ease;
+    opacity:0;
+    transform: scale(0.96);
+}
+
+/* Responsive sizing */
+@media (min-width: 768px){
+    .splash-logo{ width:240px; }
+    .splash-title{ font-size:1.35rem; }
+}
+@media (min-width: 1200px){
+    .splash-logo{ width:620px; }
+    .splash-title{ font-size:1.6rem; }
+}
+

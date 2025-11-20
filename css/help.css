@@ -1,0 +1,155 @@
+:root {
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --text: #1e1d6d;
+  --accent: #1e1d6d;
+}
+
+.darkMode {
+  --bg: #0f1724;
+  --card: #0b1220;
+  --text: #e6eef8;
+  --accent: #8fb0ff;
+  --text2: #000000;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+header {
+  background: transparent;
+}
+
+header h2 {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Card style */
+.card {
+  background: var(--card);
+  border: 0;
+  border-radius: 12px;
+}
+
+.card .card-title {
+  color: var(--text);
+}
+
+.card .card-text {
+  color: #6c6b89;
+}
+
+/* Accordion button */
+.accordion-button {
+  background: transparent;
+}
+
+.accordion-button:not(.collapsed) {
+  background: rgba(30,29,109,0.06);
+}
+
+/* Back button */
+.btn-back {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  transition: transform 180ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease, background-color 180ms ease;
+  color: var(--text);
+  background: transparent;
+  border: none;
+}
+
+.btn-back i {
+  transition: transform 200ms cubic-bezier(.2,.9,.2,1), color 180ms ease;
+}
+
+/* tukar hover jadi merah */
+.btn-back:hover {
+  transform: translateY(-3px) rotate(-4deg) scale(1.03);
+  box-shadow: 0 6px 18px rgba(30,29,109,0.14), 0 2px 6px rgba(30,29,109,0.06);
+  background: #1e1d6d; /* merah */
+  color: #f1f1f1;
+}
+
+.btn-back:hover i {
+  color: #ffffff;
+  transform: translateX(-2px);
+}
+
+.btn-back:active {
+  transform: translateY(0) scale(.98);
+}
+
+.btn-back:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(143,176,255,0.12);
+}
+
+main.container {
+  max-width: 720px;
+}
+
+/* dark mode */
+.darkMode body {
+  background: #08101a;
+}
+
+.darkMode .card {
+  background: #0b1220;
+}
+
+.darkMode .card .card-text {
+  color: #9aa6bb;
+}
+
+.darkMode .card .card-text.text-muted.small {
+  color: #ffffff !important;
+}
+
+.darkMode footer.container.text-center.py-3.text-muted.small {
+  color: #ffffff !important;
+}
+
+/* Dropdown button & menu hover */
+.dropdown .btn {
+  transition: transform 180ms ease, box-shadow 220ms ease, background-color 160ms ease, color 160ms ease;
+  border-radius: 8px;
+  background: rgba(30,29,109,0.04);
+  color: var(--text);
+}
+
+.darkMode .btn-back:hover{
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45), 0 2px 6px rgba(0,0,0,0.25);
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.dropdown-menu .dropdown-item {
+  transition: background-color 180ms ease, color 180ms ease, transform 160ms ease, box-shadow 180ms ease;
+  border-radius: 6px;
+  will-change: transform, background-color;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+  background: #1e1d6d;
+  color: #ffffff;
+  transform: translateX(6px);
+  box-shadow: 0 8px 20px rgba(30,29,109,0.12);
+}
+
+.dropdown-menu .dropdown-item:active {
+  transform: translateX(2px);
+  background: #151328;
+}

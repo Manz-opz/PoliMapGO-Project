@@ -1,0 +1,105 @@
+/* Global body */
+body {
+  background-color: #f9f9fb;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+header {
+  border-bottom: 1px solid #eaeaea;
+  background-color: #fff;
+}
+
+header h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1e1d6d;
+  margin: 0;
+}
+
+/* Back button (match hover behavior used in other pages) */
+.btn-back{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:10px;transition:transform 180ms cubic-bezier(.2,.9,.2,1),box-shadow 220ms ease,background-color 180ms ease;color:#1e1d6d;background:transparent;border:none}
+.btn-back i{transition:transform 200ms cubic-bezier(.2,.9,.2,1),color 180ms ease;font-size:1.25rem}
+.btn-back:hover{transform:translateY(-3px) rotate(-4deg) scale(1.03);box-shadow:0 6px 18px rgba(30,29,109,0.14),0 2px 6px rgba(30,29,109,0.06);background:#1e1d6d;color:#ffffff}
+.btn-back:hover i{color:#ffffff;transform:translateX(-2px)}
+.btn-back:active{transform:translateY(0) scale(.98)}
+.btn-back:focus{outline:none;box-shadow:0 0 0 4px rgba(143,176,255,0.12)}
+
+
+/* Search box */
+.input-group .form-control {
+  border-radius: 8px 0 0 8px;
+}
+
+.input-group .btn {
+  border-radius: 0 8px 8px 0;
+}
+
+/* Map list */
+.list-group-item {
+  transition: 0.2s ease;
+  font-weight: 500;
+}
+
+.list-group-item i {
+  color: #1e1d6d;
+}
+
+.list-group-item:hover {
+  background-color: #f0f2ff;
+  transform: translateX(3px);
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid #eaeaea;
+  color: #666;
+}
+
+/* Dark mode support */
+.darkMode body {
+  background-color: #1e1e1e;
+  color: #ddd;
+}
+
+.darkMode header {
+  background-color: #2a2a2a;
+  border-bottom: 1px solid #444;
+}
+
+.darkMode header h2 {
+  color: #ddd;
+}
+
+.darkMode .btn-back i {
+  color: #ddd;
+}
+
+.darkMode .list-group-item {
+  background-color: #2b2b2b;
+  color: #ddd;
+  border-color: #444;
+}
+
+.darkMode .list-group-item i {
+  color: #ddd;
+}
+
+.darkMode .m-0 {
+  color: #000000;
+}
+
+
+.darkMode .list-group-item:hover {
+  background-color: #3a3a3a;
+}
+
+.darkMode footer {
+  border-top: 1px solid #444;
+  color: #aaa;
+}
+/* Dark mode overrides for back button */
+.darkMode .btn-back i{ color: #ddd }
+.darkMode .btn-back:hover{ background: #8fb0ff; color: #ffffff }
