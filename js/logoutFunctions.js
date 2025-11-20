@@ -148,7 +148,7 @@ async function logout() {
         
         // Redirect to login page after a brief delay
         setTimeout(() => {
-          window.location.href = "index.html";
+          window.location.href = "../index.html";
         }, 1000);
         
       }, 500);
